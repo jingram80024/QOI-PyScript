@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color: black; color: white;">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>QOI PyScript</title>
+        
+        <!-- Hide python code from being displayed on page load -->
+        <script>
+            document.getElementsByTagName('py-script')[0].style.display = 'none';
+            document.getElementsByTagName('py-env')[0].style.display = 'none';
+        </script>
+        <!-- load pyscript assets -->
+        <!--link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" /-->
+        <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+        <py-config type="json">
+            {
+                "packages": ["numpy", "pillow"],
+                "paths": ["./src/qoi.py"]
+            }
+        </py-config>       
+    </head>
+
+    <body>
+        <h1>QOI PyScript:</h1><h2>A QOI Image Format Converter</h2>
+        <p>Choose a file type to convert to, then upload your file. Your download will start immediately.</p>
+        <p>QOI PyScript is currently under development and may be buggy at times. Large files may make page unresponsive.</p>
+        <label for="type-to">Converted File Type:</label>
+        <select name="type-to" id="type-to">
+            <option value="png">.png</option>
+            <option value="jpeg">.jpeg</option>
+            <option value="qoi">.qoi</option>
+        </select>
+        <input type="file" id="file-upload" multiple>
+        <h2>Converted Files Log:</h2>
+        <div id='log'></div>
+
+        <py-script src="./src/main.py"></py-script>
+        <script src="https://cdn.jsdelivr.net/gh/eligrey/FileSaver.js@5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>
+    </body>
+</html>
